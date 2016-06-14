@@ -7,7 +7,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
         <title>Insert title here</title>  
     </head>  
-    <h1>test</h1>  
     <body>  
        <h2>All students in System</h2>
  
@@ -16,12 +15,14 @@
 	            <th>Id</th>
 	            <th>Name</th>
 	            <th>Age</th>
+	            <th>Passwd</th>
 	        </tr>
 	        <c:forEach items="${students}" var="student">
 	            <tr>
 	                <td>${student.id}</td>
 	                <td>${student.name}</td>
 	                <td>${student.age}</td>
+	                <td>${student.passwd}</td>
 	            </tr>
 	        </c:forEach>
 	    </table>

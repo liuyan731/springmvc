@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   
                              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"   
          version="2.5" >  
-    <!-- Spring view分发器 -->  
+    <!-- Spring view分发器 ,核心的控制器-->  
     <servlet>  
         <servlet-name>dispatcher</servlet-name>  
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
@@ -19,4 +19,7 @@
         <url-pattern>*.do</url-pattern>  
     </servlet-mapping>  
   
+	<welcome-file-list>
+		<welcome-file>/views/login.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>  

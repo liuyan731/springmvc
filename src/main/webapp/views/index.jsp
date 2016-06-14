@@ -5,10 +5,10 @@
 <html>  
     <head>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
-        <title>Insert title here</title>  
+        <title>TEST</title>  
     </head>  
-    <h1>test</h1>  
+    <h1>spring mvc mvn test---${hello}</h1>  
     <body>  
-        <c:out value="${liming}"></c:out>  
+        <c:out value="${hello}"></c:out>  
     </body>  
 </html>
