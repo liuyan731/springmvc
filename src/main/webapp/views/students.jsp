@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <%@ page isELIgnored="false" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
 <html>  
     <head>  
@@ -9,7 +13,7 @@
     </head>  
     <body>  
        <h2>All students in System</h2>
- 
+ 		<h3 style="color: orange;">当前用户：${currentUser.name}</h3>
 	    <table border="1">
 	        <tr>
 	            <th>Id</th>
@@ -26,5 +30,7 @@
 	            </tr>
 	        </c:forEach>
 	    </table>
+	    <h3 style="color: orange;">当前用户：${currentUser.name}</h3>
+	    <h3 style="color: blue;"><a href="<%=path%>/views/add.jsp">新增用户</a></h3>
     </body>  
 </html>

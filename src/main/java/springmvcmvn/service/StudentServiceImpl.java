@@ -17,4 +17,12 @@ public class StudentServiceImpl implements StudentService{
 	public List<Student> getAllStudents() {
 		return studentDAO.getAllStudents();  // 模拟处理业务逻辑
 	}
+
+	public boolean addStudent(Student student) {
+		if(student == null) {
+			return false;
+		} else {
+			return studentDAO.save(student);
+		}
+	}
 }

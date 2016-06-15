@@ -1,8 +1,10 @@
 package springmvcmvn.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,13 +25,15 @@ public class StudentController {
 	 * 直接获取name和passwd（spring会自动将表单参数注入到方法参数，保证属性名一样就可以）
 	 */
 	@RequestMapping(params = "method=login1") // http://localhost:8080/springmvcmvn/student.do?method=login1
-	public String login(String name, String passwd, Model model) {
+	public String login(String name, String passwd, Model model, HttpServletRequest request) {
 		List<Student> students = studentService.getAllStudents();
+		HttpSession session = request.getSession();
 		for (Student student2 : students) {
 			if (student2.getName().equals(name) && student2.getPasswd().equals(passwd)) {
 				System.out.println("登陆成功！");
 				model.addAttribute("success1", "success1");
-				return "success";
+				session.setAttribute("currentUser", student2);
+				return "redirect:student.do?method=getAll"; // 重定向到getAll
 			}
 		}
 		System.out.println("登录失败！");
@@ -84,13 +88,28 @@ public class StudentController {
 		return "students";
 	}
 
-//	@RequestMapping(params = "method=query")
-//	@RequestMapping(params = "method=delete")
-//	@RequestMapping(params = "method=edit")
-	
 	@RequestMapping(params = "method=add")
-	public String add(Student student) {
-		System.out.println(student.getName() + ":" + student.getAge() + ":" + student.getPasswd());
-		return "success";
+	public String add(Student student, Model model) {
+		List<Student> students = studentService.getAllStudents();
+		for (Student student2 : students) {
+			if(student2.getName().equals(student.getName())) {
+				model.addAttribute("addFailed","用户名已存在，添加失败，请重新添加");
+				return "add";
+			}
+		}
+		
+		boolean ret = studentService.addStudent(student);
+		if(ret == false) {
+			model.addAttribute("addFailed", "添加失败，请重新添加");
+			return "add";
+		} else {
+			System.out.println("添加成功: " + student.getId() + ":" + student.getName() + ":" + student.getAge() + ":"
+					+ student.getPasswd());
+			return "success";
+		}
 	}
+	
+	// @RequestMapping(params = "method=query")
+	// @RequestMapping(params = "method=delete")
+	// @RequestMapping(params = "method=edit")
 }
