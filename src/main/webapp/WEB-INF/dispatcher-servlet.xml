@@ -20,9 +20,6 @@
     <!-- 组件自扫描的包 -->
     <context:component-scan base-package="springmvcmvn" />  
   
-  	<!--  -->
-  	<mvc:resources location="/src/main/resources/" mapping="/resources/*"/>
-  
   	<!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
         <property name="prefix" value="/views/" />  

@@ -10,6 +10,7 @@
         <title>Login</title>  
     </head>  
     <center>
+    	<h1>welcome</h1>
 	  	<h2>login1</h2>  
 	  	<h3>
 	  		<font color="red">${message1}</font>
@@ -20,6 +21,7 @@
 			<input type="submit" value="submit">  
 		</form>  
 		<br>
+		<h1>-----------------------------------------------------</h1>
 		<h2>login2</h2>  
 	  	<h3>
 	  		<font color="red">${message2}</font>

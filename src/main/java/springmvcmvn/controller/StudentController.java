@@ -1,6 +1,5 @@
 package springmvcmvn.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import springmvcmvn.model.Student;
 import springmvcmvn.service.StudentService;
 
-@Controller
-@RequestMapping(value = "/student.do")
+@Controller		//@Controller @Repository @Service @Component负责注册一个bean 到spring 上下文中
+@RequestMapping(value = "/student.do") //注解为控制器指定可以处理哪些 URL 请求
 public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
 
 	/**
-	 * 直接获取name和passwd（spring会自动将表单参数注入到方法参数，保证属性名一样就可以）
+	 * 直接获取name和passwd（spring会自动将表单参数注入到方法参数，保证属性名一样就可以）自动匹配参数
 	 */
 	@RequestMapping(params = "method=login1") // http://localhost:8080/springmvcmvn/student.do?method=login1
 	public String login(String name, String passwd, Model model, HttpServletRequest request) {
@@ -62,7 +61,7 @@ public class StudentController {
 	}
 
 	/**
-	 * 自动注入bean，这里需要实体类有默认的构造函数
+	 * 自动注入bean，这里需要实体类有默认的构造函数，自动装箱
 	 */
 	@RequestMapping(params = "method=login3")
 	public String login(Student student, Model model) {
