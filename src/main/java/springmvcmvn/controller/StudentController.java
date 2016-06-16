@@ -62,6 +62,7 @@ public class StudentController {
 
 	/**
 	 * 自动注入bean，这里需要实体类有默认的构造函数，自动装箱
+	 * bean是由容器所创建的（如tomcat），所以需要实体类（java bean应该具有一个无参的构造器）
 	 */
 	@RequestMapping(params = "method=login3")
 	public String login(Student student, Model model) {
